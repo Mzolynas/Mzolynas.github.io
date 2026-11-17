@@ -8,23 +8,22 @@
 <meta name="description" content="Portfolio of Mykolas Zolynas, final-year Software Design with AI for Cloud Computing student at TUS Athlone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one soft rounded panel on a pale ground; pill nav, big two-tone headline, 2-column project cards with UI mockups peeking up from the bottom. Single light look, like the reference. */
+/* Layout: one soft rounded panel on a pale ground; pill nav, big two-tone headline, 2x2 project cards with app screens peeking up, then a short experience list and contact. Single light look, one accent colour. */
 :root {
-  --ground: #ececec;
-  --panel: #f5f5f5;
-  --card: #e6e6e8;
-  --ink: #111111;
-  --muted: #8a8a8a;
-  --line: #e0e0e0;
-  --orange: #f25c1f;
-  --blue: #2a1ae6;
+  --ground: #ebebed;
+  --panel: #f6f6f7;
+  --card: #e7e7ea;
+  --ink: #121212;
+  --muted: #85858c;
+  --line: #e1e1e4;
+  --accent: #2348ff;
+  --accent-dark: #1534d6;
   --navy: #0f1b3d;
   --white: #ffffff;
-  --display: "Manrope", "Segoe UI", system-ui, sans-serif;
-  --body: "Manrope", "Segoe UI", system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --body: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -41,94 +40,79 @@ body {
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-block: 40px;
 }
-img { max-width: 100%; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
 .panel {
-  max-width: 1180px;
-  margin: 0 auto;
+  max-width: 1120px; margin: 0 auto;
   background: var(--panel);
   border-radius: 32px;
-  box-shadow: 0 40px 80px -30px rgba(0,0,0,.18), 0 2px 6px rgba(0,0,0,.04);
-  padding: 28px clamp(18px, 4vw, 40px) 48px;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.16), 0 2px 6px rgba(0,0,0,.04);
+  padding: 26px clamp(18px, 4vw, 40px) 40px;
 }
 
 /* Nav */
-.nav {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 10px 10px 10px 24px;
-}
-.brand { font-size: 1.1rem; color: #6b6b6b; text-decoration: none; font-weight: 500; }
-.nav-links { display: flex; align-items: center; gap: 28px; }
-.nav-links a { text-decoration: none; color: #6b6b6b; font-size: 1.05rem; font-weight: 500; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--line); border-radius: 18px; padding: 10px 10px 10px 22px; background: var(--white); }
+.brand { font-weight: 700; text-decoration: none; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+.brand i { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a { text-decoration: none; color: #66666d; font-weight: 500; }
 .nav-links a:hover { color: var(--ink); }
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--blue); color: var(--white) !important;
-  text-decoration: none; font-weight: 600; font-size: 1rem;
-  padding: 12px 24px; border-radius: 10px; border: 0; cursor: pointer;
-  font-family: inherit;
-  transition: transform .15s ease, background .15s ease;
-}
-.btn:hover { background: #1f10c7; transform: translateY(-1px); }
-.btn.ghost { background: transparent; color: var(--ink) !important; border: 1px solid #cfcfcf; }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--white) !important; text-decoration: none; font-weight: 600; font-size: .95rem; padding: 11px 22px; border-radius: 999px; border: 0; cursor: pointer; font-family: inherit; transition: background .15s ease, transform .15s ease; }
+.btn:hover { background: var(--accent); transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: var(--ink) !important; border: 1px solid #cdcdd2; }
 .btn.ghost:hover { background: var(--white); }
 
 /* Hero */
-.hero { padding: clamp(56px, 9vw, 120px) clamp(0px, 2vw, 24px) clamp(48px, 7vw, 88px); max-width: 820px; }
-.status {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: .85rem; font-weight: 600; color: #4a4a4a;
-  background: var(--white); border: 1px solid var(--line);
-  padding: 6px 14px 6px 10px; border-radius: 999px; margin-bottom: 28px;
-}
-.status i { width: 8px; height: 8px; border-radius: 50%; background: #1fae5b; box-shadow: 0 0 0 4px rgba(31,174,91,.15); }
-h1 {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(2.3rem, 5.6vw, 4.1rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  margin: 0 0 28px;
-  text-wrap: balance;
-}
-h1 em { font-style: normal; color: var(--orange); }
-.lede { color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.55; margin: 0 0 18px; max-width: 64ch; }
-.lede b { color: #555; font-weight: 700; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero { padding: clamp(56px, 9vw, 112px) clamp(0px, 2vw, 20px) clamp(48px, 7vw, 80px); max-width: 800px; }
+h1 { font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 3.9rem); line-height: 1.08; letter-spacing: -0.035em; margin: 0 0 24px; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--accent); }
+.lede { color: var(--muted); font-size: clamp(1.05rem, 1.5vw, 1.22rem); margin: 0 0 16px; max-width: 62ch; }
+.lede b { color: #47474d; font-weight: 700; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
-/* Section headings */
+/* Sections */
 section { scroll-margin-top: 24px; }
-.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 clamp(0px, 2vw, 24px) 24px; flex-wrap: wrap; }
-h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.2vw, 2.4rem); letter-spacing: -0.025em; margin: 0; line-height: 1.15; }
-.sec-head p { margin: 0; color: var(--muted); }
 .block { padding-top: clamp(56px, 8vw, 96px); }
+h2 { font-weight: 800; font-size: clamp(1.7rem, 3vw, 2.3rem); letter-spacing: -0.03em; line-height: 1.15; margin: 0 clamp(0px, 2vw, 20px) 24px; }
 
-/* Project cards */
-.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
-.project { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-.shot {
-  background: var(--card); border-radius: 28px; height: 330px;
-  position: relative; overflow: hidden;
-  display: flex; align-items: flex-end; justify-content: center;
-}
-.project:hover .mock { transform: translateY(-6px); }
+/* Projects */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px 24px; }
+.project { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.shot { background: var(--card); border-radius: 26px; height: 310px; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
 .mock { transition: transform .35s ease; }
+.project:hover .mock { transform: translateY(-6px); }
 .project-body { padding: 0 6px; }
-.project h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-.project h3 small { font-size: .8rem; font-weight: 600; color: var(--orange); letter-spacing: .02em; }
-.project p { margin: 0 0 12px; color: var(--muted); }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
-.tags li { font-size: .8rem; font-weight: 600; color: #555; background: var(--white); border: 1px solid var(--line); padding: 4px 12px; border-radius: 999px; }
+.project h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 4px; }
+.project .kind { font-size: .85rem; font-weight: 600; color: var(--accent); margin: 0 0 8px; }
+.project p { margin: 0; color: var(--muted); }
 
-/* Mock 1: FleetSync laptop */
-.laptop { width: 82%; max-width: 470px; background: #111; border-radius: 16px 16px 0 0; padding: 10px 10px 0; box-shadow: 0 20px 40px -10px rgba(0,0,0,.35); }
-.screen { background: #f4f6fb; border-radius: 8px 8px 0 0; display: grid; grid-template-columns: 76px 1fr; height: 230px; overflow: hidden; font-size: 10px; }
+/* Mock: desktop window (database app) */
+.window { width: 84%; max-width: 450px; background: var(--white); border-radius: 12px 12px 0 0; box-shadow: 0 20px 40px -12px rgba(0,0,0,.28); overflow: hidden; font-size: 10px; }
+.titlebar { background: #ececf0; padding: 7px 12px; display: flex; align-items: center; gap: 6px; color: #555; font-weight: 600; font-size: 10px; }
+.titlebar i { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; flex: none; }
+.titlebar i:nth-child(2) { background: #febc2e; }
+.titlebar i:nth-child(3) { background: #28c840; margin-right: 6px; }
+.crud { display: flex; flex-wrap: wrap; gap: 5px; padding: 10px 12px 4px; }
+.crud span { padding: 4px 9px; border-radius: 5px; background: #eef1ff; color: var(--accent); font-weight: 700; font-size: 9px; }
+.crud span.del { background: #ffeceb; color: #c4321c; }
+.chart { padding: 6px 12px 0; }
+.chart-title { display: flex; justify-content: space-between; color: #777; font-size: 9px; font-weight: 600; margin-bottom: 4px; }
+.chart-title b { color: var(--ink); }
+.chart svg { display: block; width: 100%; height: auto; }
+.ax { font-family: var(--mono); font-size: 9px; fill: #8a8a92; }
+.val { font-family: var(--mono); font-size: 9.5px; font-weight: 600; fill: var(--ink); }
+.bar { fill: #b9c3ff; }
+.bar.hi { fill: var(--accent); }
+
+.soon { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 24px; }
+.soon-name { font-weight: 800; font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -0.035em; color: var(--ink); }
+.soon-tag { font-size: .85rem; font-weight: 600; color: var(--accent); background: var(--white); border: 1px solid var(--line); padding: 5px 14px; border-radius: 999px; }
+/* Mock: FleetSync laptop */
+.laptop { width: 82%; max-width: 450px; background: #111; border-radius: 16px 16px 0 0; padding: 10px 10px 0; box-shadow: 0 20px 40px -10px rgba(0,0,0,.35); }
+.screen { background: #f4f6fb; border-radius: 8px 8px 0 0; display: grid; grid-template-columns: 72px 1fr; height: 220px; overflow: hidden; font-size: 10px; }
 .side { background: var(--navy); color: #c9d2ee; padding: 12px 8px; display: flex; flex-direction: column; gap: 8px; }
-.side b { color: var(--white); font-size: 10.5px; letter-spacing: .02em; }
+.side b { color: var(--white); }
 .side span { padding: 4px 6px; border-radius: 5px; }
 .side span.on { background: rgba(255,255,255,.12); color: var(--white); }
 .main { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
@@ -136,121 +120,72 @@ h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.2
 .chip { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 999px; }
 .chip.ok { background: #dff5e7; color: #137a3f; }
 .chip.wip { background: #fff1d6; color: #9a6200; }
-.chip.blue { background: #e3e6ff; color: var(--blue); }
-.sync { display: grid; grid-template-columns: 1fr 26px 1fr; gap: 6px; align-items: center; }
-.tile { background: var(--white); border: 1px solid #e3e7f0; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px; color: #333; }
+.chip.blue { background: #e3e7ff; color: var(--accent); }
+.sync { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 6px; align-items: center; }
+.tile { background: var(--white); border: 1px solid #e3e7f0; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
 .tile .k { font-family: var(--mono); color: #7b84a0; font-size: 8.5px; }
-.tile .t { font-weight: 700; font-size: 10px; color: #1b2340; }
-.arrow { text-align: center; color: var(--orange); font-weight: 800; font-size: 14px; }
+.tile .t { font-weight: 700; color: #1b2340; }
+.arrow { text-align: center; color: var(--accent); font-weight: 800; font-size: 14px; }
 .rows { background: var(--white); border: 1px solid #e3e7f0; border-radius: 8px; overflow: hidden; }
-.rows div { display: grid; grid-template-columns: 1.1fr 1.6fr .8fr .9fr; gap: 6px; padding: 5px 8px; border-top: 1px solid #eef1f6; align-items: center; color: #444; }
+.rows div { display: grid; grid-template-columns: 1.1fr 1.4fr .9fr .9fr; gap: 6px; padding: 5px 8px; border-top: 1px solid #eef1f6; align-items: center; color: #444; }
 .rows div:first-child { border-top: 0; color: #8a93ad; font-weight: 700; font-size: 8.5px; text-transform: uppercase; letter-spacing: .05em; }
-.rows .num { font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 9px; }
+.num { font-family: var(--mono); font-size: 9px; font-variant-numeric: tabular-nums; }
 
-/* Mock 2: JDBC desktop window */
-.window { width: 80%; max-width: 440px; background: var(--white); border-radius: 12px 12px 0 0; box-shadow: 0 20px 40px -12px rgba(0,0,0,.3); overflow: hidden; font-size: 10px; }
-.titlebar { background: #ebebef; padding: 8px 12px; display: flex; align-items: center; gap: 6px; color: #555; font-weight: 600; }
-.titlebar i { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; }
-.titlebar i:nth-child(2) { background: #febc2e; }
-.titlebar i:nth-child(3) { background: #28c840; margin-right: 8px; }
-.form { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; padding: 12px; }
-.field { display: flex; flex-direction: column; gap: 3px; color: #777; font-size: 9px; }
-.field span { border: 1px solid #d9d9e0; border-radius: 5px; padding: 5px 6px; color: #222; font-size: 10px; background: #fafafa; }
-.crud { display: flex; gap: 6px; padding: 0 12px 10px; }
-.crud span { padding: 5px 10px; border-radius: 5px; background: #eef0ff; color: var(--blue); font-weight: 700; }
-.crud span.del { background: #ffeceb; color: #c4321c; }
-.table { margin: 0 12px; border: 1px solid #e4e4ea; border-radius: 6px; overflow: hidden; }
-.table div { display: grid; grid-template-columns: .5fr 1.4fr 1.4fr 1fr; padding: 5px 8px; border-top: 1px solid #f0f0f4; color: #444; }
-.table div:first-child { background: #f6f6f9; color: #888; font-weight: 700; border-top: 0; }
-.table div.sel { background: #eef0ff; }
-.statusbar { margin-top: 10px; padding: 6px 12px; background: #f6f6f9; color: #777; font-family: var(--mono); font-size: 8.5px; display: flex; justify-content: space-between; }
-.statusbar b { color: #137a3f; }
-
-/* Mock 3: notebook */
-.nb { width: 80%; max-width: 440px; background: var(--white); border-radius: 12px 12px 0 0; box-shadow: 0 20px 40px -12px rgba(0,0,0,.3); padding: 12px 14px 0; font-size: 10px; }
-.cell { display: grid; grid-template-columns: 44px 1fr; gap: 8px; align-items: start; margin-bottom: 8px; }
+/* Mock: notebook */
+.nb { width: 80%; max-width: 430px; background: var(--white); border-radius: 12px 12px 0 0; box-shadow: 0 20px 40px -12px rgba(0,0,0,.28); padding: 12px 14px 0; font-size: 10px; }
+.cell { display: grid; grid-template-columns: 42px 1fr; gap: 8px; align-items: start; margin-bottom: 8px; }
 .cell .in { font-family: var(--mono); color: #3a55c8; font-size: 9px; padding-top: 4px; }
 .cell code { display: block; font-family: var(--mono); font-size: 9.5px; background: #f5f6f8; border: 1px solid #e8e9ee; border-radius: 6px; padding: 6px 8px; color: #333; white-space: pre; overflow: hidden; }
-.cell code .kw { color: #a626a4; }
-.cell code .fn { color: #2a6ad8; }
+.kw { color: #a626a4; } .fn { color: #2a6ad8; }
 .plot svg { display: block; width: 100%; height: auto; }
 
-/* Mock 4: network */
-.net { width: 84%; max-width: 470px; background: #0e1630; border-radius: 14px 14px 0 0; box-shadow: 0 20px 40px -12px rgba(0,0,0,.35); padding: 10px 12px 0; }
-.net .bar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; color: #8e9bc4; margin-bottom: 4px; }
+/* Mock: network */
+.net { width: 84%; max-width: 450px; background: var(--navy); border-radius: 14px 14px 0 0; box-shadow: 0 20px 40px -12px rgba(0,0,0,.35); padding: 10px 12px 0; }
+.net .bar-t { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; color: #8e9bc4; margin-bottom: 4px; }
 .net svg { display: block; width: 100%; height: auto; }
 
 /* Experience */
-.exp { display: flex; flex-direction: column; gap: 14px; }
-.job {
-  display: grid; grid-template-columns: 200px minmax(0,1fr); gap: 24px;
-  background: var(--white); border-radius: 22px; padding: 26px 28px;
-}
-.when { color: var(--muted); font-weight: 600; font-size: .95rem; font-variant-numeric: tabular-nums; }
-.when span { display: block; color: var(--ink); font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
-.job h3 { margin: 0 0 4px; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
-.job .org { color: var(--orange); font-weight: 600; margin: 0 0 12px; }
-.job p { margin: 0 0 12px; color: #555; }
-.job ul { margin: 0; padding-left: 18px; color: #555; display: grid; gap: 6px; }
-.job ul li::marker { color: var(--orange); }
-.job.small { padding: 20px 28px; }
-.job.small ul { gap: 2px; }
-.stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 14px; }
-.stat { background: var(--panel); border-radius: 14px; padding: 10px 16px; }
-.stat strong { display: block; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.stat span { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.exp { display: grid; gap: 12px; }
+.job { display: grid; grid-template-columns: 180px minmax(0,1fr); gap: 24px; background: var(--white); border-radius: 20px; padding: 24px 26px; }
+.when { color: var(--muted); font-weight: 600; font-size: .92rem; font-variant-numeric: tabular-nums; }
+.job h3 { margin: 0; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+.job .org { color: var(--accent); font-weight: 600; margin: 0 0 10px; }
+.job p { margin: 0; color: #55555c; }
+.job ul { margin: 10px 0 0; padding-left: 18px; color: #55555c; display: grid; gap: 4px; }
+.job ul li::marker { color: var(--accent); }
 
-/* About: education + skills */
-.about { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px; }
-.box { background: var(--white); border-radius: 22px; padding: 26px 28px; min-width: 0; }
-.box h3 { margin: 0 0 16px; font-size: 1.05rem; font-weight: 700; color: var(--muted); letter-spacing: .02em; text-transform: uppercase; font-size: .8rem; }
-.edu { display: grid; gap: 18px; }
-.edu b { display: block; font-size: 1.05rem; line-height: 1.35; }
-.edu span { color: var(--muted); font-size: .95rem; }
-.modules { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; padding: 0; list-style: none; }
-.modules li { font-size: .78rem; font-weight: 600; background: var(--panel); color: #555; padding: 4px 10px; border-radius: 999px; }
-.skills { display: grid; gap: 14px; }
-.skills div { display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 12px; align-items: baseline; }
-.skills dt { font-weight: 700; font-size: .9rem; }
-.skills dd { margin: 0; color: #555; }
-.beyond { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); color: #555; }
-.beyond b { color: var(--ink); }
-
-/* Pitch */
-.pitch { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 40px; align-items: center; background: var(--card); border-radius: 28px; padding: clamp(28px, 4vw, 48px); }
-.pitch h2 { margin-bottom: 14px; }
-.pitch p { color: #666; margin: 0 0 22px; max-width: 46ch; }
-.phone { width: 260px; max-width: 100%; aspect-ratio: 9 / 16; background: #111; border-radius: 34px; padding: 10px; box-shadow: 0 30px 50px -20px rgba(0,0,0,.4); }
-.phone iframe, .phone a { display: block; width: 100%; height: 100%; border: 0; border-radius: 26px; }
-.phone a { background: linear-gradient(160deg, #2a2f45, #0d0f18); color: var(--white); text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 20px; }
-.phone a .play { width: 64px; height: 64px; border-radius: 50%; background: var(--orange); display: grid; place-items: center; }
-.phone a .play::after { content: ""; border-left: 20px solid var(--white); border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px; }
+/* About */
+.about { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+.box { background: var(--white); border-radius: 20px; padding: 24px 26px; min-width: 0; }
+.box h3 { margin: 0 0 14px; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.box b { display: block; font-size: 1.05rem; line-height: 1.35; }
+.box .sub { color: var(--muted); font-size: .93rem; display: block; margin-bottom: 14px; }
+.box .sub:last-child { margin-bottom: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.chips li { font-size: .85rem; font-weight: 600; background: var(--panel); border: 1px solid var(--line); padding: 5px 12px; border-radius: 999px; color: #44444a; }
+.box p { margin: 16px 0 0; color: #55555c; font-size: .95rem; }
 
 /* Contact */
-.contact { text-align: left; padding: clamp(56px, 8vw, 96px) clamp(0px, 2vw, 24px) 8px; }
-.contact h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 18px; }
-.contact h2 em { font-style: normal; color: var(--orange); }
-.contact p { color: var(--muted); font-size: 1.15rem; margin: 0 0 26px; max-width: 52ch; }
+.contact { padding: clamp(56px, 8vw, 96px) clamp(0px, 2vw, 20px) 0; }
+.contact h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 0 0 14px; }
+.contact h2 em { font-style: normal; color: var(--accent); }
+.contact p { color: var(--muted); font-size: 1.1rem; margin: 0 0 24px; max-width: 52ch; }
 .mail { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.mail a.addr { font-size: clamp(1.1rem, 2.4vw, 1.5rem); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--orange); padding-bottom: 2px; user-select: all; word-break: break-all; }
-.copy { font-family: inherit; font-weight: 600; font-size: .9rem; background: var(--white); border: 1px solid #d5d5d5; border-radius: 8px; padding: 8px 14px; cursor: pointer; color: var(--ink); }
+.addr { font-size: clamp(1.1rem, 2.4vw, 1.45rem); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; user-select: all; word-break: break-all; }
+.copy { font-family: inherit; font-weight: 600; font-size: .9rem; background: var(--white); border: 1px solid #d3d3d8; border-radius: 999px; padding: 8px 16px; cursor: pointer; color: var(--ink); }
 .copy:hover { border-color: var(--ink); }
-footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; margin: 56px clamp(0px, 2vw, 24px) 0; padding-top: 22px; border-top: 1px solid var(--line); }
+footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: .88rem; margin: 48px clamp(0px, 2vw, 20px) 0; padding-top: 20px; border-top: 1px solid var(--line); }
 
 @media (max-width: 860px) {
   .grid, .about { grid-template-columns: minmax(0,1fr); }
-  .job { grid-template-columns: minmax(0,1fr); gap: 8px; }
-  .pitch { grid-template-columns: minmax(0,1fr); justify-items: center; text-align: center; }
-  .pitch p { margin-inline: auto; }
+  .job { grid-template-columns: minmax(0,1fr); gap: 6px; }
 }
 @media (max-width: 560px) {
   body { padding-block: 12px; }
   .panel { border-radius: 22px; padding-top: 16px; }
   .nav { padding: 8px 8px 8px 16px; }
   .nav-links a:not(.btn) { display: none; }
-  .btn { padding: 10px 16px; }
-  .shot { height: 270px; border-radius: 22px; }
-  .skills div { grid-template-columns: minmax(0,1fr); gap: 2px; }
+  .shot { height: 260px; border-radius: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -262,9 +197,9 @@ footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wr
 <div class="panel">
 
   <header class="nav">
-    <a class="brand" href="#top">Mykolas Zolynas</a>
+    <a class="brand" href="#top"><i></i>Mykolas Zolynas</a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#projects">Projects</a>
+      <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#about">About</a>
       <a class="btn" href="#contact">Contact me</a>
@@ -273,81 +208,75 @@ footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wr
 
   <main id="top">
     <section class="hero">
-      <div class="status"><i></i>Open to graduate roles for 2027</div>
-      <h1>Hi! I’m Mykolas, a <em>Software Design &amp; AI student</em> based in Ireland.</h1>
-      <p class="lede">I’m in my final year of Software Design with Artificial Intelligence for Cloud Computing at TUS Athlone. On placement at AceTech I worked on fleet maintenance, compliance inspections and scheduling for the HSE National Ambulance Service, managing <b>280+ Jira tickets with zero missed deadlines</b>.</p>
-      <p class="lede">I like building software that fixes real operational problems. My final year project, FleetSync, came straight out of what I saw on placement. I’m looking for a graduate role in software, cloud or AI.</p>
+      <h1>Hi! I’m Mykolas, a <em>software developer</em> in my final year at TUS Athlone.</h1>
+      <p class="lede">I study Software Design with AI for Cloud Computing. On placement at AceTech I worked on fleet maintenance and scheduling for the HSE National Ambulance Service, managing <b>280+ Jira tickets with zero missed deadlines</b>.</p>
+      <p class="lede">I like building practical software: databases, automations and reports that make real work easier. I’m looking for a graduate role in software, cloud or AI.</p>
       <div class="hero-actions">
-        <a class="btn" href="#projects">See my work</a>
+        <a class="btn" href="#work">See my work</a>
         <a class="btn ghost" href="https://drive.google.com/file/d/1Mh8aOUfG8LDgyCPSaTP84Meq4ZX9_c4a/view" target="_blank" rel="noopener">View my CV</a>
       </div>
     </section>
 
-    <section id="projects">
-      <div class="sec-head">
-        <h2>Selected work</h2>
-        <p>College projects, 2024 – 2026</p>
-      </div>
+    <section id="work">
+      <h2>Selected work</h2>
       <div class="grid">
 
         <article class="project">
           <div class="shot" aria-hidden="true">
-            <div class="mock laptop">
-              <div class="screen">
-                <div class="side">
-                  <b>FleetSync</b>
-                  <span class="on">Jobs</span>
-                  <span>Vehicles</span>
-                  <span>Invoices</span>
-                  <span>Settings</span>
-                </div>
-                <div class="main">
-                  <div class="top">Maintenance sync <span class="chip ok">Live</span></div>
-                  <div class="sync">
-                    <div class="tile"><span class="k">JIRA · FLT-482</span><span class="t">Tyre change, Unit A-117</span><span class="chip ok" style="align-self:flex-start">Done</span></div>
-                    <div class="arrow">⇄</div>
-                    <div class="tile"><span class="k">FLEET · A-117</span><span class="t">Defect closed</span><span class="chip blue" style="align-self:flex-start">€312.40</span></div>
-                  </div>
-                  <div class="rows">
-                    <div><span>Ticket</span><span>Job type</span><span>Cost</span><span>Status</span></div>
-                    <div><span class="num">FLT-479</span><span>CVRT</span><span class="num">€95.00</span><span class="chip ok">Synced</span></div>
-                    <div><span class="num">FLT-480</span><span>Service</span><span class="num">€248.10</span><span class="chip ok">Synced</span></div>
-                    <div><span class="num">FLT-481</span><span>Inspection</span><span class="num">—</span><span class="chip wip">Awaiting</span></div>
-                  </div>
-                </div>
+            <div class="mock window">
+              <div class="titlebar"><i></i><i></i><i></i>Fleet Maintenance Manager</div>
+              <div class="crud"><span>Insert</span><span>Update</span><span class="del">Delete</span><span>Transfer</span><span>Export All</span></div>
+              <div class="chart">
+                <div class="chart-title"><span>Monthly Costs · 2026</span><b>€16,815</b></div>
+                <svg viewBox="0 0 360 190" role="img" aria-label="Bar chart of monthly inspection costs, January to October 2026, peaking at 2,710 euro in March">
+<line x1="40" y1="160.0" x2="354" y2="160.0" stroke="var(--line)" stroke-width="1"/>
+<text x="34" y="163.0" text-anchor="end" class="ax">0</text>
+<line x1="40" y1="112.0" x2="354" y2="112.0" stroke="var(--line)" stroke-width="1"/>
+<text x="34" y="115.0" text-anchor="end" class="ax">€1k</text>
+<line x1="40" y1="64.0" x2="354" y2="64.0" stroke="var(--line)" stroke-width="1"/>
+<text x="34" y="67.0" text-anchor="end" class="ax">€2k</text>
+<line x1="40" y1="16.0" x2="354" y2="16.0" stroke="var(--line)" stroke-width="1"/>
+<text x="34" y="19.0" text-anchor="end" class="ax">€3k</text>
+<rect class="bar" x="46.0" y="71.2" width="22" height="88.8" rx="3"/>
+<text x="57.0" y="176" text-anchor="middle" class="ax">J</text>
+<rect class="bar" x="78.0" y="48.9" width="22" height="111.1" rx="3"/>
+<text x="89.0" y="176" text-anchor="middle" class="ax">F</text>
+<rect class="bar hi" x="110.0" y="29.9" width="22" height="130.1" rx="3"/>
+<text x="121.0" y="176" text-anchor="middle" class="ax">M</text>
+<text x="121.0" y="23.9" text-anchor="middle" class="val">€2,710</text>
+<rect class="bar" x="142.0" y="97.1" width="22" height="62.9" rx="3"/>
+<text x="153.0" y="176" text-anchor="middle" class="ax">A</text>
+<rect class="bar" x="174.0" y="93.0" width="22" height="67.0" rx="3"/>
+<text x="185.0" y="176" text-anchor="middle" class="ax">M</text>
+<rect class="bar" x="206.0" y="120.2" width="22" height="39.8" rx="3"/>
+<text x="217.0" y="176" text-anchor="middle" class="ax">J</text>
+<rect class="bar" x="238.0" y="95.2" width="22" height="64.8" rx="3"/>
+<text x="249.0" y="176" text-anchor="middle" class="ax">J</text>
+<rect class="bar" x="270.0" y="107.7" width="22" height="52.3" rx="3"/>
+<text x="281.0" y="176" text-anchor="middle" class="ax">A</text>
+<rect class="bar" x="302.0" y="76.5" width="22" height="83.5" rx="3"/>
+<text x="313.0" y="176" text-anchor="middle" class="ax">S</text>
+<rect class="bar" x="334.0" y="53.2" width="22" height="106.8" rx="3"/>
+<text x="345.0" y="176" text-anchor="middle" class="ax">O</text>
+</svg>
               </div>
             </div>
           </div>
           <div class="project-body">
-            <h3>FleetSync <small>Final year project</small></h3>
-            <p>Keeps Jira and a fleet management system in sync for every maintenance job: inspections, CVRTs, tyre changes, services, repairs and accidents. A Jira ticket creates the fleet record, and when the garage adds its invoice costs both records update and close automatically.</p>
-            <ul class="tags"><li>Jira API</li><li>REST APIs</li><li>Cloud</li><li>Automation</li></ul>
+            <h3>Fleet Maintenance Manager</h3>
+            <p class="kind">Java · MySQL · JDBC</p>
+            <p>A desktop app for managing a fleet of vehicles, their inspections and contractors across six stations. It uses stored procedures, triggers and views in MySQL, and exports seven reports to CSV, like monthly costs and spend per station.</p>
           </div>
         </article>
 
         <article class="project">
           <div class="shot" aria-hidden="true">
-            <div class="mock window">
-              <div class="titlebar"><i></i><i></i><i></i>Records Manager</div>
-              <div class="form">
-                <div class="field">ID<span>1042</span></div>
-                <div class="field">Name<span>Aoife Byrne</span></div>
-                <div class="field">Category<span>Standard</span></div>
-              </div>
-              <div class="crud"><span>Create</span><span>Read</span><span>Update</span><span class="del">Delete</span></div>
-              <div class="table">
-                <div><span>ID</span><span>Name</span><span>Category</span><span>Updated</span></div>
-                <div><span>1040</span><span>Ciarán Doyle</span><span>Premium</span><span>02/11</span></div>
-                <div><span>1041</span><span>Niamh Kelly</span><span>Standard</span><span>05/11</span></div>
-                <div class="sel"><span>1042</span><span>Aoife Byrne</span><span>Standard</span><span>09/11</span></div>
-              </div>
-              <div class="statusbar"><span>jdbc:mysql://localhost:3306</span><b>● Connected</b></div>
-            </div>
+            <div class="soon"><span class="soon-name">FleetSync</span><span class="soon-tag">In progress · 2026 – 2027</span></div>
           </div>
           <div class="project-body">
-            <h3>Database Application <small>Java · JDBC</small></h3>
-            <p>A Java Swing desktop app connected to a MySQL database through JDBC, with full create, read, update and delete on every record.</p>
-            <ul class="tags"><li>Java</li><li>Swing</li><li>MySQL</li><li>JDBC</li><li>Eclipse</li></ul>
+            <h3>FleetSync</h3>
+            <p class="kind">Final year project · in progress</p>
+            <p>Keeps Jira and a fleet management system in sync for every maintenance job. A Jira ticket creates the fleet record, and when the garage adds its invoice, both records update and close on their own.</p>
           </div>
         </article>
 
@@ -358,67 +287,49 @@ footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wr
 model = LinearRegression().<span class="fn">fit</span>(X_train, y_train)</code></div>
               <div class="cell"><span class="in">Out[6]:</span>
                 <div class="plot">
-                  <svg viewBox="0 0 320 170" role="img" aria-label="Scatter plot of car weight against miles per gallon with a falling regression line">
-                    <rect x="0" y="0" width="320" height="170" fill="#ffffff"/>
-                    <g stroke="#eceef3" stroke-width="1">
-                      <line x1="34" y1="20" x2="310" y2="20"/><line x1="34" y1="60" x2="310" y2="60"/><line x1="34" y1="100" x2="310" y2="100"/><line x1="34" y1="140" x2="310" y2="140"/>
+                  <svg viewBox="0 0 320 160">
+                    <rect x="0" y="0" width="320" height="160" fill="#ffffff"/>
+                    <g stroke="#eceef3" stroke-width="1"><line x1="34" y1="20" x2="310" y2="20"/><line x1="34" y1="60" x2="310" y2="60"/><line x1="34" y1="100" x2="310" y2="100"/><line x1="34" y1="136" x2="310" y2="136"/></g>
+                    <g font-family="JetBrains Mono, monospace" font-size="8" fill="#8a8a92"><text x="28" y="23" text-anchor="end">40</text><text x="28" y="63" text-anchor="end">30</text><text x="28" y="103" text-anchor="end">20</text><text x="172" y="154" text-anchor="middle">weight (lbs) vs mpg</text></g>
+                    <g fill="#2348ff" fill-opacity=".45">
+                      <circle cx="50" cy="38" r="3"/><circle cx="58" cy="28" r="3"/><circle cx="66" cy="46" r="3"/><circle cx="74" cy="34" r="3"/><circle cx="82" cy="52" r="3"/><circle cx="90" cy="44" r="3"/><circle cx="98" cy="60" r="3"/><circle cx="106" cy="50" r="3"/><circle cx="114" cy="66" r="3"/><circle cx="122" cy="58" r="3"/><circle cx="130" cy="72" r="3"/><circle cx="138" cy="80" r="3"/><circle cx="146" cy="70" r="3"/><circle cx="154" cy="86" r="3"/><circle cx="162" cy="92" r="3"/><circle cx="170" cy="84" r="3"/><circle cx="178" cy="100" r="3"/><circle cx="188" cy="96" r="3"/><circle cx="198" cy="108" r="3"/><circle cx="208" cy="104" r="3"/><circle cx="218" cy="116" r="3"/><circle cx="230" cy="112" r="3"/><circle cx="242" cy="122" r="3"/><circle cx="256" cy="118" r="3"/><circle cx="270" cy="128" r="3"/><circle cx="286" cy="124" r="3"/><circle cx="298" cy="132" r="3"/>
                     </g>
-                    <g font-family="JetBrains Mono, monospace" font-size="8" fill="#8a8a8a">
-                      <text x="28" y="23" text-anchor="end">40</text><text x="28" y="63" text-anchor="end">30</text><text x="28" y="103" text-anchor="end">20</text><text x="28" y="143" text-anchor="end">10</text>
-                      <text x="40" y="160">2000</text><text x="132" y="160">3000</text><text x="224" y="160">4000</text><text x="290" y="160">5000</text>
-                      <text x="172" y="169" text-anchor="middle">weight (lbs)</text>
-                      <text x="8" y="12">mpg</text>
-                    </g>
-                    <g fill="#f25c1f" fill-opacity=".55">
-                      <circle cx="50" cy="38" r="3"/><circle cx="58" cy="28" r="3"/><circle cx="66" cy="46" r="3"/><circle cx="74" cy="34" r="3"/><circle cx="82" cy="52" r="3"/><circle cx="90" cy="44" r="3"/><circle cx="98" cy="60" r="3"/><circle cx="104" cy="50" r="3"/><circle cx="112" cy="66" r="3"/><circle cx="120" cy="58" r="3"/><circle cx="128" cy="72" r="3"/><circle cx="136" cy="80" r="3"/><circle cx="144" cy="70" r="3"/><circle cx="152" cy="86" r="3"/><circle cx="160" cy="92" r="3"/><circle cx="168" cy="84" r="3"/><circle cx="176" cy="100" r="3"/><circle cx="184" cy="96" r="3"/><circle cx="194" cy="108" r="3"/><circle cx="204" cy="104" r="3"/><circle cx="214" cy="116" r="3"/><circle cx="224" cy="112" r="3"/><circle cx="234" cy="122" r="3"/><circle cx="246" cy="118" r="3"/><circle cx="258" cy="128" r="3"/><circle cx="270" cy="132" r="3"/><circle cx="284" cy="126" r="3"/><circle cx="296" cy="136" r="3"/>
-                    </g>
-                    <line x1="44" y1="34" x2="304" y2="136" stroke="#2a1ae6" stroke-width="2"/>
+                    <line x1="44" y1="34" x2="304" y2="134" stroke="#121212" stroke-width="2"/>
                   </svg>
                 </div>
               </div>
             </div>
           </div>
           <div class="project-body">
-            <h3>Machine Learning on Vehicle Data <small>Data mining &amp; ML</small></h3>
-            <p>A linear regression model that predicts fuel efficiency from the Auto MPG dataset, and a decision tree that classifies whether a vehicle is acceptable using the Car Evaluation dataset.</p>
-            <ul class="tags"><li>Python</li><li>Jupyter</li><li>Anaconda</li><li>Regression</li><li>Decision trees</li></ul>
+            <h3>Machine Learning on Vehicle Data</h3>
+            <p class="kind">Python · Jupyter</p>
+            <p>A linear regression that predicts fuel efficiency (Auto MPG dataset) and a decision tree that rates whether a car is acceptable (Car Evaluation dataset).</p>
           </div>
         </article>
 
         <article class="project">
           <div class="shot" aria-hidden="true">
             <div class="mock net">
-              <div class="bar"><span>R1# show ip interface brief</span><span>192.168.10.0/24</span></div>
-              <svg viewBox="0 0 420 210" role="img" aria-label="Network diagram: one router linked to two switches, each serving a /26 subnet with two PCs">
+              <div class="bar-t"><span>R1# show ip interface brief</span><span>192.168.10.0/24</span></div>
+              <svg viewBox="0 0 420 210">
                 <g stroke="#3b4a7a" stroke-width="2" fill="none">
                   <line x1="210" y1="44" x2="110" y2="104"/><line x1="210" y1="44" x2="310" y2="104"/>
                   <line x1="110" y1="120" x2="60" y2="178"/><line x1="110" y1="120" x2="160" y2="178"/>
                   <line x1="310" y1="120" x2="260" y2="178"/><line x1="310" y1="120" x2="360" y2="178"/>
                 </g>
-                <g>
-                  <circle cx="210" cy="34" r="20" fill="#f25c1f"/>
-                  <text x="210" y="38" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="11" fill="#ffffff">R1</text>
-                  <rect x="84" y="98" width="52" height="24" rx="6" fill="#2a1ae6"/>
-                  <text x="110" y="114" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="#ffffff">SW1</text>
-                  <rect x="284" y="98" width="52" height="24" rx="6" fill="#2a1ae6"/>
-                  <text x="310" y="114" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="#ffffff">SW2</text>
-                  <g fill="#1d2850" stroke="#5c6ca3" stroke-width="1">
-                    <rect x="44" y="176" width="32" height="22" rx="4"/><rect x="144" y="176" width="32" height="22" rx="4"/>
-                    <rect x="244" y="176" width="32" height="22" rx="4"/><rect x="344" y="176" width="32" height="22" rx="4"/>
-                  </g>
-                </g>
-                <g font-family="JetBrains Mono, monospace" font-size="9" fill="#9fb0e0">
-                  <text x="22" y="86">VLAN 10</text><text x="22" y="98">.0/26</text>
-                  <text x="350" y="86">VLAN 20</text><text x="350" y="98">.64/26</text>
-                  <text x="150" y="68" fill="#ffb08c">G0/0.10</text><text x="226" y="68" fill="#ffb08c">G0/0.20</text>
-                </g>
+                <circle cx="210" cy="34" r="20" fill="#2348ff"/>
+                <text x="210" y="38" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="11" fill="#ffffff">R1</text>
+                <rect x="84" y="98" width="52" height="24" rx="6" fill="#ffffff"/><text x="110" y="114" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="10" fill="#0f1b3d">SW1</text>
+                <rect x="284" y="98" width="52" height="24" rx="6" fill="#ffffff"/><text x="310" y="114" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="10" fill="#0f1b3d">SW2</text>
+                <g fill="#1d2850" stroke="#5c6ca3" stroke-width="1"><rect x="44" y="176" width="32" height="22" rx="4"/><rect x="144" y="176" width="32" height="22" rx="4"/><rect x="244" y="176" width="32" height="22" rx="4"/><rect x="344" y="176" width="32" height="22" rx="4"/></g>
+                <g font-family="JetBrains Mono, monospace" font-size="9" fill="#9fb0e0"><text x="22" y="86">VLAN 10</text><text x="22" y="98">.0/26</text><text x="350" y="86">VLAN 20</text><text x="350" y="98">.64/26</text></g>
               </svg>
             </div>
           </div>
           <div class="project-body">
-            <h3>Networking <small>Cisco labs</small></h3>
-            <p>Router and switch configuration in Cisco IOS, subnetting, the OSI model, TCP and UDP behaviour, and QoS for prioritising traffic.</p>
-            <ul class="tags"><li>Cisco IOS</li><li>Subnetting</li><li>VLANs</li><li>QoS</li></ul>
+            <h3>Networking</h3>
+            <p class="kind">Cisco IOS · Packet Tracer</p>
+            <p>Router and switch configuration, subnetting and VLANs, TCP and UDP, and QoS for prioritising traffic.</p>
           </div>
         </article>
 
@@ -426,106 +337,65 @@ model = LinearRegression().<span class="fn">fit</span>(X_train, y_train)</code><
     </section>
 
     <section id="experience" class="block">
-      <div class="sec-head">
-        <h2>Experience</h2>
-        <p>Work placement and part-time roles</p>
-      </div>
+      <h2>Experience</h2>
       <div class="exp">
         <article class="job">
-          <div class="when"><span>Jan – Jun 2026</span>Tullamore, Co. Offaly</div>
+          <div class="when">Jan – Jun 2026</div>
           <div>
             <h3>FACC Scheduler</h3>
-            <p class="org">AceTech · Work placement</p>
-            <p>AceTech builds integrated communications and control systems for emergency vehicles. I was on the team handling fleet maintenance, compliance inspections and scheduling for the HSE National Ambulance Service.</p>
-            <div class="stat-row">
-              <div class="stat"><strong>280+</strong><span>Jira tickets managed</span></div>
-              <div class="stat"><strong>0</strong><span>missed deadlines</span></div>
-            </div>
+            <p class="org">AceTech, Tullamore · Work placement</p>
+            <p>Fleet maintenance, compliance inspections and scheduling for the HSE National Ambulance Service.</p>
             <ul>
-              <li>Entered and maintained fleet data in AceTech’s cloud-based system</li>
-              <li>Built Excel reports for the team from fleet and compliance data</li>
-              <li>Tracked assets with RFID tags and serial numbers</li>
-              <li>Coordinated maintenance work with external contractors</li>
-              <li>Met regularly with a UX design lead to make sure systems worked for the people using them</li>
-              <li>Researched how AI and ML (NLP, duplicate detection, Jira automation) could improve efficiency and presented a proposal to my manager</li>
+              <li>Managed 280+ Jira tickets with zero missed deadlines</li>
+              <li>Kept fleet data up to date in AceTech’s cloud system and built Excel reports</li>
+              <li>Tracked assets with RFID tags and serial numbers, and worked with contractors</li>
+              <li>Met regularly with a UX design lead, and researched how AI could speed up the team’s work</li>
             </ul>
           </div>
         </article>
-        <article class="job small">
-          <div class="when"><span>Jun – Sep 2023</span>Mountrath, Co. Laois</div>
+        <article class="job">
+          <div class="when">Jun – Sep 2023</div>
           <div>
             <h3>Surface Prep Technician</h3>
-            <p class="org">Hillside Machine Tech Ltd</p>
-            <ul><li>Prepared metal surfaces for welding with industrial grinders, following strict safety procedures</li></ul>
+            <p class="org">Hillside Machine Tech Ltd, Mountrath</p>
           </div>
         </article>
-        <article class="job small">
-          <div class="when"><span>Aug 2021 – Nov 2022</span>Tullamore, Co. Offaly</div>
+        <article class="job">
+          <div class="when">Aug 2021 – Nov 2022</div>
           <div>
             <h3>Floor &amp; Kitchen Staff</h3>
-            <p class="org">Central Hotel</p>
-            <ul><li>Served customers and handled cash in a fast-paced setting, and backed up the kitchen at peak times</li></ul>
+            <p class="org">Central Hotel, Tullamore</p>
           </div>
         </article>
       </div>
     </section>
 
     <section id="about" class="block">
-      <div class="sec-head">
-        <h2>Education &amp; skills</h2>
-      </div>
+      <h2>Education &amp; skills</h2>
       <div class="about">
         <div class="box">
           <h3>Education</h3>
-          <div class="edu">
-            <div>
-              <b>BSc (Hons) Software Design in Artificial Intelligence for Cloud Computing</b>
-              <span>TUS Athlone · 2023 – 2027</span>
-              <ul class="modules">
-                <li>Software Development</li><li>Software Development for Cloud</li><li>Software Engineering</li><li>Server-side Web Development</li><li>Databases</li><li>Networks</li><li>Agile Methodologies</li><li>Mathematics for Software Design</li>
-              </ul>
-            </div>
-            <div>
-              <b>BSc (Hons) Software Development</b>
-              <span>South East Technological University · First year completed</span>
-            </div>
-          </div>
+          <b>BSc (Hons) Software Design in AI for Cloud Computing</b>
+          <span class="sub">TUS Athlone · 2023 – 2027</span>
+          <b>BSc (Hons) Software Development</b>
+          <span class="sub">South East Technological University · first year</span>
         </div>
         <div class="box">
           <h3>Skills</h3>
-          <dl class="skills">
-            <div><dt>Languages</dt><dd>Java, Python, SQL</dd></div>
-            <div><dt>Web</dt><dd>Front-end and server-side web development</dd></div>
-            <div><dt>Data &amp; AI</dt><dd>MySQL, JDBC, machine learning, Jupyter</dd></div>
-            <div><dt>Cloud &amp; networks</dt><dd>Cloud software development, Cisco networking</dd></div>
-            <div><dt>Tools</dt><dd>Jira, Excel, Eclipse, MySQL Workbench, Agile</dd></div>
-            <div><dt>Spoken</dt><dd>English and Lithuanian, both fluent</dd></div>
-          </dl>
-          <p class="beyond"><b>Outside work:</b> five-plus years of consistent gym training, a former school choir member, and I follow NBA strategy and stats closely.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="pitch" class="block">
-      <div class="pitch">
-        <div>
-          <h2>My elevator pitch</h2>
-          <p>Three minutes on who I am, what I did on placement, and what I can bring to your team.</p>
-          <a class="btn" href="https://youtube.com/shorts/-htlnkID-_4" target="_blank" rel="noopener">Watch on YouTube</a>
-        </div>
-        <div class="phone">
-          <!--VIDEO-START--><iframe src="https://www.youtube.com/embed/-htlnkID-_4" title="Mykolas Zolynas elevator pitch" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe><!--VIDEO-END-->
+          <ul class="chips">
+            <li>Java</li><li>Python</li><li>SQL</li><li>MySQL</li><li>JDBC</li><li>Web development</li><li>Cloud</li><li>Machine learning</li><li>Jira</li><li>Excel</li><li>Cisco networking</li><li>Agile</li>
+          </ul>
+          <p>Fluent in English and Lithuanian.</p>
         </div>
       </div>
     </section>
 
     <section id="contact" class="contact">
       <h2>Let’s <em>talk.</em></h2>
-      <p>I’m looking for a graduate role in software, cloud or AI. The quickest way to reach me is email.</p>
+      <p>I’m looking for a graduate role in software, cloud or AI. Email is the quickest way to reach me.</p>
       <div class="mail">
         <a class="addr" href="mailto:mykolas2005@gmail.com">mykolas2005@gmail.com</a>
         <button class="copy" id="copy-email" type="button">Copy email</button>
-        <a class="btn ghost" href="https://drive.google.com/file/d/1Mh8aOUfG8LDgyCPSaTP84Meq4ZX9_c4a/view" target="_blank" rel="noopener">View my CV</a>
       </div>
     </section>
   </main>
@@ -548,9 +418,8 @@ model = LinearRegression().<span class="fn">fit</span>(X_train, y_train)</code><
       var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
       btn.textContent = 'Selected, press Ctrl+C';
     }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, fallback);
-    } else { fallback(); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); }
+    else { fallback(); }
   });
 })();
 </script>
